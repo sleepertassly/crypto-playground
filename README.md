@@ -1,2 +1,2 @@
 # crypto-playground
-A playground for cryptography enthusiast. 
+A playground for cryptography enthusiasts. 
