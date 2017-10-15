@@ -5,3 +5,5 @@
 /src/.vs
 /src/CryptoPlayground/obj
 /src/CryptoPlayground/bin
+/.vs
+/src/CryptoPlayground/CryptoPlayground.csproj.user
