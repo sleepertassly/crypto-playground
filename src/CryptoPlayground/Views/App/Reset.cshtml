@@ -1,0 +1,11 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewData["Title"] = "Reset";
+}
+
+<h2>Reset</h2>
+@foreach (var message in Model)
+{
+    <p>@Html.Raw(message)</p>
+}
