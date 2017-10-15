@@ -117,19 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Affine" xml:space="preserve">
-    <value>Affin</value>
+  <data name="Create New" xml:space="preserve">
+    <value>Új létrehozása</value>
   </data>
-  <data name="Caesar" xml:space="preserve">
-    <value>Caesar</value>
+  <data name="Delete" xml:space="preserve">
+    <value>Töröl</value>
   </data>
-  <data name="Crypto Playground" xml:space="preserve">
-    <value>Kripto Játszótér</value>
+  <data name="Edit" xml:space="preserve">
+    <value>Szerkeszt</value>
+  </data>
+  <data name="Team" xml:space="preserve">
+    <value>Csapat</value>
   </data>
   <data name="Teams" xml:space="preserve">
     <value>Csapatok</value>
-  </data>
-  <data name="Vigenere" xml:space="preserve">
-    <value>Vigenère</value>
   </data>
 </root>

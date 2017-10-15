@@ -9,5 +9,8 @@ namespace CryptoPlayground.Models
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
+        public int? TeamId { get; set; }
+
+        public Team Team { get; set; }
     }
 }
