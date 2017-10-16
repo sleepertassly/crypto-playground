@@ -45,6 +45,9 @@
     <EmbeddedResource Update="Resources\Views\Team\Delete.hu.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Team\Details.hu.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views\Team\Edit.hu.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>

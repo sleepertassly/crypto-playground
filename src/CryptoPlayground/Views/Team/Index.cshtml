@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
-@model IEnumerable<CryptoPlayground.Models.UserViewModels.TeamViewModel>
+@model IEnumerable<CryptoPlayground.Models.TeamViewModels.TeamViewModel>
 
 @inject IViewLocalizer Localizer
 
@@ -29,7 +29,7 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">@Localizer["Edit"]</a> |
-                @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">@Localizer["Delete"]</a>
             </td>
         </tr>
