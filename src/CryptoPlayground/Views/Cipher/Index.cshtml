@@ -1,0 +1,109 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model IEnumerable<CryptoPlayground.Models.CipherViewModels.CipherViewModel>
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = ViewBag.Cipher + " " + Localizer["Cipher"];
+}
+<h2 class="pull-left">
+    @ViewBag.Cipher @Localizer["Cipher"]
+    <span class="btn-group text-right">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadAll">@Localizer["Upload All"]</button>
+        <button type="button" class="btn"><a asp-action="DownloadAll" asp-route-cipher="@ViewBag.Cipher">@Localizer["Download All"]</a></button>
+    </span>
+</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.UnlockedOn)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Key)
+            </th>
+            <th class="text-center">
+                @Localizer["Files"]
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.UnlockedOn)
+                </td>
+                <td class="text-center">
+                    @if (item.Status == LetterStatus.Locked)
+                    {
+                        <form action="@Url.Action("Upload", new { id = item.Id })" method="post" class="form-inline">
+                            <input class="form-control input-sm" type="text" name="Key" placeholder="@ViewBag.KeyPlaceholder">
+                            <button type="submit" class="btn btn-primary btn-sm">@Localizer["Save"]</button>
+                        </form>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Key)
+                    }
+                </td>
+                <td class="text-center">
+                    <a asp-action="Download" asp-route-id="@item.Id">@Localizer["Download"]</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="uploadAll" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    @Localizer["Upload All"]
+                </h4>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="uploadAllForm" action="@Url.Action("UploadAll", new { cipher = ViewBag.Cipher })" method="post" role="form">
+                    <div class="form-group">
+                        <label for="keys">@Localizer["Keys"]:</label>
+                        <textarea class="form-control" rows="20" id="keys" name="keys"></textarea>
+                    </div>
+                </form>
+            </div>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById('uploadAllForm').submit();">
+                        @Localizer["Save"]
+                    </button>
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        @Localizer["Close"]
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

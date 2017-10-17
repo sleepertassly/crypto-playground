@@ -24,10 +24,16 @@
     <EmbeddedResource Update="Resources\Controllers\AccountController.hu.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers\CipherController.hu.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views\Account\Login.hu.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views\Account\Register.hu.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Cipher\Index.hu.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views\Home\Index.hu.resx">
@@ -58,6 +64,8 @@
 
   <ItemGroup>
     <Folder Include="Models\TeamViewModels\" />
+    <Folder Include="Temp\" />
+    <Folder Include="wwwroot\archive\" />
   </ItemGroup>
 
 </Project>

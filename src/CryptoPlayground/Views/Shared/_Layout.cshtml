@@ -34,6 +34,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Cipher" asp-action="Index" asp-route-cipher="Caesar">@Localizer["Caesar"]</a></li>
+                    <li><a asp-area="" asp-controller="Cipher" asp-action="Index" asp-route-cipher="Affine">@Localizer["Affine"]</a></li>
+                    <li><a asp-area="" asp-controller="Cipher" asp-action="Index" asp-route-cipher="Vigenere">@Localizer["Vigenere"]</a></li>
                     <li><a asp-area="" asp-controller="Team" asp-action="Index">@Localizer["Teams"]</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
