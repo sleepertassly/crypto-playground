@@ -123,6 +123,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Töröl</value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>Részletez</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Szerkeszt</value>
   </data>

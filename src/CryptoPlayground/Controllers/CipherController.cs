@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using CryptoPlayground.Data;
 using CryptoPlayground.Models;
 using CryptoPlayground.Models.CipherViewModels;
@@ -13,13 +12,12 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CryptoPlayground.Controllers
 {
-	[Authorize(Roles = ApplicationRole.Puzzler)]
+    [Authorize(Roles = ApplicationRole.Puzzler)]
 	public class CipherController : Controller
     {
         private readonly IMapper _mapper;
@@ -44,7 +42,7 @@ namespace CryptoPlayground.Controllers
 
         public async Task<IActionResult> Index(string cipher)
         {
-            ViewBag.KeyPlaceholder = "key";
+            ViewBag.KeyPlaceholder = cipher == "Affine" ? _localizer["key1,key2"]: _localizer["key"];
             ViewBag.Cipher = _localizer[cipher];
 			var team = _teamManager.GetTeamBy(User);
 			var letters = await _context.Letters.Include("UnlockedBy").Where(l => l.Cipher == cipher).ToListAsync();

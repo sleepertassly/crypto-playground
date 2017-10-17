@@ -16,7 +16,7 @@
 
 <div title="@Localizer["Request culture provider:"] @requestCulture?.Provider?.GetType().Name">
     <form id="selectLanguage" asp-controller="Home"
-          asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path"
+          asp-action="SetLanguage" asp-route-returnUrl="@string.Format("{0}{1}", Context.Request.Path, Context.Request.QueryString)"
           method="post" class="form-inline" role="form">
         <div class="form-group">
             <label>@Localizer["Language"]:</label>

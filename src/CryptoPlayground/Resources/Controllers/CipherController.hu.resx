@@ -126,6 +126,12 @@
   <data name="Cipher" xml:space="preserve">
     <value>Rejtjel</value>
   </data>
+  <data name="key" xml:space="preserve">
+    <value>kulcs</value>
+  </data>
+  <data name="key1,key2" xml:space="preserve">
+    <value>kulcs1,kulcs2</value>
+  </data>
   <data name="Vigenere" xml:space="preserve">
     <value>Vigenere</value>
   </data>

@@ -117,16 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Back to List" xml:space="preserve">
-    <value>Vissza a listához</value>
+  <data name="Confirm password" xml:space="preserve">
+    <value>Jelszó megerősítése</value>
   </data>
-  <data name="Close" xml:space="preserve">
-    <value>Bezárás</value>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
   </data>
-  <data name="Edit Team" xml:space="preserve">
-    <value>Csapat szerkesztés</value>
+  <data name="Full name" xml:space="preserve">
+    <value>Teljes név</value>
   </data>
-  <data name="Save" xml:space="preserve">
-    <value>Mentés</value>
+  <data name="Password" xml:space="preserve">
+    <value>Jelszó</value>
+  </data>
+  <data name="The password and confirmation password do not match." xml:space="preserve">
+    <value>A jelszó és megerősítése nem egyezik.</value>
+  </data>
+  <data name="The {0} must be at least {2} and at max {1} characters long." xml:space="preserve">
+    <value>A {0} értéknek legalább {2} és maximum {1} karakter hosszúnak kell lennie.</value>
   </data>
 </root>

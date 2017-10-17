@@ -42,7 +42,7 @@
                     @Html.DisplayFor(modelItem => item.Id)
                 </td>
                 <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Status)
+                    @(item.Status == LetterStatus.Locked ? Localizer["Locked"] : Localizer["Unlocked"])
                 </td>
                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.UnlockedOn)
@@ -89,7 +89,7 @@
                 <form id="uploadAllForm" action="@Url.Action("UploadAll", new { cipher = ViewBag.Cipher })" method="post" role="form">
                     <div class="form-group">
                         <label for="keys">@Localizer["Keys"]:</label>
-                        <textarea class="form-control" rows="20" id="keys" name="keys"></textarea>
+                        <textarea class="form-control" rows="12" id="keys" name="keys"></textarea>
                     </div>
                 </form>
             </div>

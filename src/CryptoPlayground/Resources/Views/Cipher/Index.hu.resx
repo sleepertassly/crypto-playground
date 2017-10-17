@@ -120,4 +120,25 @@
   <data name="Cipher" xml:space="preserve">
     <value>rejtjel</value>
   </data>
+  <data name="Download" xml:space="preserve">
+    <value>Letöltés</value>
+  </data>
+  <data name="Download All" xml:space="preserve">
+    <value>Tömeges letöltés</value>
+  </data>
+  <data name="Keys" xml:space="preserve">
+    <value>Kulcsok</value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>Titkosítva</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Mentés</value>
+  </data>
+  <data name="Unlocked" xml:space="preserve">
+    <value>Feloldva</value>
+  </data>
+  <data name="Upload All" xml:space="preserve">
+    <value>Tömeges feltöltés</value>
+  </data>
 </root>
