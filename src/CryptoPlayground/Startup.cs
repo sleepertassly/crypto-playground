@@ -41,10 +41,17 @@ namespace CryptoPlayground
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            // Add application services.
-            services.AddTransient<IEmailSender, EmailSender>();
+			services.AddAuthorization(options =>
+			{
+				options.AddPolicy(ApplicationPolicy.BePuzzler, policy => policy.RequireRole(ApplicationRole.Puzzler));
+				options.AddPolicy(ApplicationPolicy.BeAdministrator, policy => policy.RequireRole(ApplicationRole.Administrator));
+			});
 
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
+			// Add application services.
+			services.AddTransient<IEmailSender, EmailSender>();
+			services.AddTransient<ITeamManager, TeamManager>();
+
+			services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             services.AddMvc()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)

@@ -3,6 +3,8 @@ using AutoMapper.QueryableExtensions;
 using CryptoPlayground.Data;
 using CryptoPlayground.Models;
 using CryptoPlayground.Models.TeamViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,31 +14,37 @@ using System.Threading.Tasks;
 
 namespace CryptoPlayground.Controllers
 {
-    public class TeamController : Controller
+	[Authorize(Roles = ApplicationRole.Administrator)]
+	public class TeamController : Controller
     {
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
         private readonly ApplicationDbContext _context;
-        
+		private readonly UserManager<ApplicationUser> _userManager;
 
-        public TeamController(
+
+		public TeamController(
             IMapper mapper,
             ILogger<TeamController> logger,
-            ApplicationDbContext context)
+            ApplicationDbContext context,
+			UserManager<ApplicationUser> userManager)
         {
             _mapper = mapper;
             _logger = logger;
             _context = context;
-        }
+			_userManager = userManager;
+		}
 
-        // GET: Team
-        public async Task<IActionResult> Index()
+		// GET: Team
+		[AllowAnonymous]
+		public async Task<IActionResult> Index()
         {
             return View(await _context.Teams.OrderBy(t => t.Name).ProjectTo<TeamViewModel>().ToListAsync());
         }
 
-        // GET: Team/Details/5
-        public async Task<IActionResult> Details(int? id)
+		[AllowAnonymous]
+		// GET: Team/Details/5
+		public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -78,7 +86,8 @@ namespace CryptoPlayground.Controllers
                 foreach (var user in users)
                 {
                     user.TeamId = team.Id;
-                }
+					await _userManager.AddToRoleAsync(user, ApplicationRole.Puzzler);
+				}
                 await _context.SaveChangesAsync();
                 _logger.LogInformation("Users were added to the team '{1}'.", team.Id);
 
@@ -126,13 +135,15 @@ namespace CryptoPlayground.Controllers
                 foreach (var member in team.TeamMembers)
                 {
                     member.TeamId = null;
-                }
+					await _userManager.RemoveFromRoleAsync(member, ApplicationRole.Puzzler);
+				}
 
                 var users = await _context.Users.Where(u => model.TeamMembers.Contains(u.Id)).ToListAsync();
                 foreach (var user in users)
                 {
                     user.TeamId = team.Id;
-                }
+					await _userManager.AddToRoleAsync(user, ApplicationRole.Puzzler);
+				}
 
                 await _context.SaveChangesAsync();
                 _logger.LogInformation("Team '{0}' was updated.", model.Id);

@@ -12,8 +12,9 @@ namespace CryptoPlayground.Data
     {
         public DbSet<Team> Teams { get; set; }
         public DbSet<Letter> Letters { get; set; }
+        public DbSet<TeamLetter> TeamLetters { get; set; }
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }

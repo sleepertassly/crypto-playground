@@ -14,4 +14,10 @@ namespace CryptoPlayground.Models.CipherViewModels
         [Display(Name = "Status")]
         public LetterStatus Status { get; set; }
     }
+
+	public enum LetterStatus
+	{
+		Locked,
+		Unlocked
+	}
 }

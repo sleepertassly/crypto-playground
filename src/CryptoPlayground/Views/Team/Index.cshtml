@@ -1,38 +1,52 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
 @model IEnumerable<CryptoPlayground.Models.TeamViewModels.TeamViewModel>
 
 @inject IViewLocalizer Localizer
+@inject IAuthorizationService AuthorizationService
 
 @{
-    ViewData["Title"] = Localizer["Team"];
+	ViewData["Title"] = Localizer["Team"];
 }
 
 <h2>@Localizer["Teams"]</h2>
-
-<p>
-    <a asp-action="Create">@Localizer["Create New"]</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">@Localizer["Edit"]</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">@Localizer["Delete"]</a>
-            </td>
-        </tr>
+@if ((await AuthorizationService.AuthorizeAsync(User, ApplicationPolicy.BeAdministrator)).Succeeded)
+{
+	<p>
+		<a asp-action="Create">@Localizer["Create New"]</a>
+	</p>
 }
-    </tbody>
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Name)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@if ((await AuthorizationService.AuthorizeAsync(User, ApplicationPolicy.BeAdministrator)).Succeeded)
+					{
+						<span>
+							<a asp-action="Edit" asp-route-id="@item.Id">@Localizer["Edit"]</a> |
+							<a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+							<a asp-action="Delete" asp-route-id="@item.Id">@Localizer["Delete"]</a>
+						</span>
+					}
+					else
+					{
+						<a asp-action="Details" asp-route-id="@item.Id">Details</a>
+					}
+				</td>
+			</tr>
+		}
+	</tbody>
 </table>

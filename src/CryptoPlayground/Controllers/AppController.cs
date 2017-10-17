@@ -31,8 +31,11 @@ namespace CryptoPlayground.Controllers
 
             _context.Database.EnsureCreated();
             messages.Add("The database is created and it is up to date.");
-            
-            await CreateUserAsync("Administrator", "admin@mailtrap.com", "P@ssw0rd", ApplicationRole.Administrator);
+
+			await CreateRoleAsync(ApplicationRole.Puzzler);
+			messages.Add(String.Format("Role '{0}' is created.", ApplicationRole.Puzzler));
+
+			await CreateUserAsync("Administrator", "admin@mailtrap.com", "P@ssw0rd", ApplicationRole.Administrator);
             messages.Add(String.Format("Role '{0}' is created.", ApplicationRole.Administrator));
             messages.Add(String.Format("User '{0}' is created.", "Administrator"));
 
@@ -133,7 +136,6 @@ namespace CryptoPlayground.Controllers
                     Key = key,
                     Content = letter,
                     EncryptedContent = cipher.Encrypt(key, letter),
-                    Status = LetterStatus.Locked,
                 });
             }
             _context.SaveChanges();

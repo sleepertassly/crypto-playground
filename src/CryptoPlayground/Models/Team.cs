@@ -11,5 +11,6 @@ namespace CryptoPlayground.Models
         public string Name { get; set; }
 
         public ICollection<ApplicationUser> TeamMembers { get; set; }
-    }
+        public ICollection<TeamLetter> UnlockedLetters { get; set; }
+	}
 }

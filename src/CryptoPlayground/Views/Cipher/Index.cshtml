@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
+﻿@using CryptoPlayground.Models.CipherViewModels;
+@using Microsoft.AspNetCore.Mvc.Localization
 @model IEnumerable<CryptoPlayground.Models.CipherViewModels.CipherViewModel>
 
 @inject IViewLocalizer Localizer
@@ -6,11 +7,11 @@
 @{
     ViewData["Title"] = ViewBag.Cipher + " " + Localizer["Cipher"];
 }
-<h2 class="pull-left">
+<h2>
     @ViewBag.Cipher @Localizer["Cipher"]
-    <span class="btn-group text-right">
+    <span class="btn-group pull-right">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadAll">@Localizer["Upload All"]</button>
-        <button type="button" class="btn"><a asp-action="DownloadAll" asp-route-cipher="@ViewBag.Cipher">@Localizer["Download All"]</a></button>
+        <a  class="btn btn-default" asp-action="DownloadAll" asp-route-cipher="@ViewBag.Cipher">@Localizer["Download All"]</a>
     </span>
 </h2>
 <table class="table">
