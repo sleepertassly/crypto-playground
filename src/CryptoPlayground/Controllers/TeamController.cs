@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -39,7 +40,19 @@ namespace CryptoPlayground.Controllers
 		[AllowAnonymous]
 		public async Task<IActionResult> Index()
         {
-            return View(await _context.Teams.OrderBy(t => t.Name).ProjectTo<TeamViewModel>().ToListAsync());
+            var model = new List<TeamIndexViewModel>();
+            var teams = await _context.Teams.Include("UnlockedLetters").OrderBy(t => t.Name).ToListAsync();
+            foreach (var team in teams)
+            {
+                model.Add(new TeamIndexViewModel()
+                {
+                    Id = team.Id,
+                    Name = team.Name,
+                    Score = team.UnlockedLetters.Count(),
+                    LastUnlockedOn = team.UnlockedLetters.Count() > 0 ? team.UnlockedLetters.Select(ul => ul.UnlockedOn).OrderBy(ul => ul).Last() : null
+                });
+            }
+            return View(model);
         }
 
 		[AllowAnonymous]

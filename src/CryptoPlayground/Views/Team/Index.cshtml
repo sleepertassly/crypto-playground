@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Mvc.Localization
-@model IEnumerable<CryptoPlayground.Models.TeamViewModels.TeamViewModel>
+@model IEnumerable<CryptoPlayground.Models.TeamViewModels.TeamIndexViewModel>
 
 @inject IViewLocalizer Localizer
 @inject IAuthorizationService AuthorizationService
@@ -22,6 +22,12 @@
 			<th>
 				@Html.DisplayNameFor(model => model.Name)
 			</th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Score)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.LastUnlockedOn)
+            </th>
 			<th></th>
 		</tr>
 	</thead>
@@ -32,7 +38,13 @@
 				<td>
 					@Html.DisplayFor(modelItem => item.Name)
 				</td>
-				<td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Score)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.LastUnlockedOn)
+                </td>
+				<td class="text-center">
 					@if ((await AuthorizationService.AuthorizeAsync(User, ApplicationPolicy.BeAdministrator)).Succeeded)
 					{
 						<span>

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using CryptoPlayground.Data;
 using Microsoft.AspNetCore.Identity;
 using CryptoPlayground.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CryptoPlayground.Controllers
 {
@@ -41,7 +42,8 @@ namespace CryptoPlayground.Controllers
 
             return View(messages);
         }
-      
+
+        [Authorize(Roles = ApplicationRole.Administrator)]
         public IActionResult CipherReset()
         {
             var messages = new List<string>();
@@ -61,6 +63,20 @@ namespace CryptoPlayground.Controllers
             messages.Add(String.Format("{0} encrypted letters were created.", caesarCipher.Name));
             Archive(caesarCipher.Name);
             messages.Add(String.Format("{0} archive created.", caesarCipher.Name));
+
+            // Affine cipher encrypted letters
+            var affineCipher = new AffineCipher();
+            GenerateLetters(affineCipher, letters.Skip((int)(letters.Count() * 0.1)).Take((int)(letters.Count() * 0.5)));
+            messages.Add(String.Format("{0} encrypted letters were created.", affineCipher.Name));
+            Archive(affineCipher.Name);
+            messages.Add(String.Format("{0} archive created.", affineCipher.Name));
+
+            // Vigenere cipher encrypted letters
+            var vigenereCipher = new VigenereCipher();
+            GenerateLetters(vigenereCipher, letters.Skip((int)(letters.Count() * 0.5)));
+            messages.Add(String.Format("{0} encrypted letters were created.", vigenereCipher.Name));
+            Archive(vigenereCipher.Name);
+            messages.Add(String.Format("{0} archive created.", vigenereCipher.Name));
 
             return View("Reset", messages);
         }

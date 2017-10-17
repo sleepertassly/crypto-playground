@@ -63,7 +63,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\TeamViewModels\" />
     <Folder Include="Temp\" />
     <Folder Include="wwwroot\archive\" />
   </ItemGroup>
