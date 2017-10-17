@@ -145,7 +145,8 @@ namespace CryptoPlayground.Controllers
                 }
 
                 team.Name = model.Name;
-                foreach (var member in team.TeamMembers)
+                var teamMembers = team.TeamMembers.ToList();
+                foreach (var member in teamMembers)
                 {
                     member.TeamId = null;
 					await _userManager.RemoveFromRoleAsync(member, ApplicationRole.Puzzler);
