@@ -6,13 +6,13 @@ namespace VigenereCipher
     {
         static void Main(string[] args)
         {
-            var abc = "abcdefghijklmnopqrstuvwxyz";
+            var abc = "'crypto' is short for cryptography.";
 
             var cipher = new VigenereCipher();
             for (int i = 0; i < 2000; i++)
             {
-                var key = cipher.RandomKey();
-                var encryptedText = cipher.Encrypt(key, abc);
+				var key = cipher.RandomKey();
+				var encryptedText = cipher.Encrypt(key, abc);
                 var decryptdText = cipher.Decrypt(key, encryptedText);
                 if (abc != decryptdText)
                 {

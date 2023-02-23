@@ -132,22 +132,43 @@
   <data name="Download All" xml:space="preserve">
     <value>Tömeges letöltés</value>
   </data>
+  <data name="Json Format Error!" xml:space="preserve">
+    <value>Json formátum hiba!</value>
+  </data>
   <data name="Keys" xml:space="preserve">
     <value>Kulcsok</value>
   </data>
   <data name="Locked" xml:space="preserve">
     <value>Titkosítva</value>
   </data>
+  <data name="Please use the following json format:" xml:space="preserve">
+    <value>Kérjük, használja a következő json formátumot:</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Mentés</value>
   </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Ismeretlen</value>
+  </data>
   <data name="Unlocked" xml:space="preserve">
     <value>Feloldva</value>
+  </data>
+  <data name="Unlocked on:" xml:space="preserve">
+    <value>Feloldva:</value>
   </data>
   <data name="Upload All" xml:space="preserve">
     <value>Tömeges feltöltés</value>
   </data>
   <data name="Vigenere" xml:space="preserve">
     <value>Vigenère</value>
+  </data>
+  <data name="Your team has 1 remaining attempt." xml:space="preserve">
+    <value>A csapatának 1 fennmaradó próbálkozás van.</value>
+  </data>
+  <data name="Your team has no more attempts." xml:space="preserve">
+    <value>A csapatának nincs több próbálkozás.</value>
+  </data>
+  <data name="Your team has {0} remaining attempts." xml:space="preserve">
+    <value>A csapatának {0} fennmaradó próbálkozás van.</value>
   </data>
 </root>
