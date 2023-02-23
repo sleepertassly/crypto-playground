@@ -5,10 +5,10 @@
 @inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = ViewBag.Cipher + " " + Localizer["Cipher"];
+    ViewData["Title"] = Localizer[ViewBag.Cipher] + " " + Localizer["Cipher"];
 }
 <h2>
-    @ViewBag.Cipher @Localizer["Cipher"]
+    @Localizer[ViewBag.Cipher] @Localizer["Cipher"]
     <span class="btn-group pull-right">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadAll">@Localizer["Upload All"]</button>
         <a  class="btn btn-default" asp-action="DownloadAll" asp-route-cipher="@ViewBag.Cipher">@Localizer["Download All"]</a>

@@ -42,8 +42,8 @@ namespace CryptoPlayground.Controllers
 
         public async Task<IActionResult> Index(string cipher)
         {
-            ViewBag.KeyPlaceholder = cipher == "Affine" ? _localizer["key1,key2"]: _localizer["key"];
-            ViewBag.Cipher = _localizer[cipher];
+			ViewBag.Cipher = cipher;
+			ViewBag.KeyPlaceholder = cipher == "Affine" ? _localizer["key1,key2"]: _localizer["key"];
 			var team = _teamManager.GetTeamBy(User);
 			var letters = await _context.Letters.Include("UnlockedBy").Where(l => l.Cipher == cipher).ToListAsync();
 			var model = new List<CipherViewModel>();
