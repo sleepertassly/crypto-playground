@@ -147,10 +147,10 @@ namespace CryptoPlayground.Models
             var index = 0;
             foreach (var c in text)
             {
-                var offset = reversAbc[key[(index++) % key.Length]];
                 if (reversAbc.ContainsKey(c))
                 {
-                    var tmp = (reversAbc[c] - offset) % abc.Length;
+					var offset = reversAbc[key[(index++) % key.Length]];
+					var tmp = (reversAbc[c] - offset) % abc.Length;
                     if (tmp < 0)
                     {
                         result.Append(abc[tmp + abc.Length]);
@@ -174,10 +174,10 @@ namespace CryptoPlayground.Models
             var index = 0;
             foreach (var c in text)
             {
-                var offset = reversAbc[key[(index++) % key.Length]];
                 if (reversAbc.ContainsKey(c))
                 {
-                    result.Append(abc[(reversAbc[c] + offset) % abc.Length]);
+					var offset = reversAbc[key[(index++) % key.Length]];
+					result.Append(abc[(reversAbc[c] + offset) % abc.Length]);
                 }
                 else
                 {
