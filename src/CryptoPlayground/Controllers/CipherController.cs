@@ -46,8 +46,9 @@ namespace CryptoPlayground.Controllers
 
 		public async Task<IActionResult> Index(string cipher, string error)
 		{
-			ViewBag.Cipher = cipher;
 			ViewBag.Error = error;
+			ViewBag.Cipher = cipher;
+			ViewBag.LocalizedCipher = _localizer[cipher];
 			ViewBag.KeyPlaceholder = cipher == "Affine" ? _localizer["key1,key2"] : _localizer["key"];
 			ViewBag.JsonKeyPlaceholder = String.Format("[{{Id:{0}_1,Key:\"{1}\"}}, {{Id:{0}_2,Key:\"{1}\"}}, ... ,{{Id:{0}_n,Key:\"{1}\"}}]", _localizer["id"], ViewBag.KeyPlaceholder);
 			var team = _teamManager.GetTeamBy(User);
