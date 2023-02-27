@@ -1,0 +1,45 @@
+@using CryptoPlayground.Models
+@using CryptoPlayground.Services
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject ITeamManager TeamManager
+@inject IViewLocalizer Localizer
+@inject IAuthorizationService AuthorizationService
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    Team team = null;
+    @if ((await AuthorizationService.AuthorizeAsync(User, ApplicationPolicy.BePuzzler)).Succeeded)
+    {
+        team = TeamManager.GetTeamBy(User);
+    }
+    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @if (team != null)
+                {
+                    <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">@UserManager.GetUserName(User) - @team.Name</a>
+                }
+                else
+                {
+                    <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">@Localizer["Hello"] @UserManager.GetUserName(User)!</a>
+                }
+            </li>
+            <li>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link">@Localizer["Log out"]</button>
+            </li>
+        </ul>
+    </form>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a asp-area="" asp-controller="Account" asp-action="Register">@Localizer["Register"]</a></li>
+        <li><a asp-area="" asp-controller="Account" asp-action="Login">@Localizer["Log in"]</a></li>
+    </ul>
+}

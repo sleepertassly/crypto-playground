@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Home Page"];
+}
+
+<div class="jumbotron">
+    <h1>@Localizer["Crypto Playground"]</h1>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>@Localizer["Welcome to Crypto Playground"]</h2>
+        <p>
+            @Localizer["Crypto Playground is an application build for cryptographic competitions."]
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>@Localizer["Best of the best"]</h2>
+        <p>@Localizer["The team that records the most points at the end of the competition is declared the winner."]</p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "Team")">@Localizer["Teams & Scores"] &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>@Localizer["Download it"]</h2>
+        <p>@Localizer["You can download the completed project from GitHub."]</p>
+        <p><a class="btn btn-default" href="https://github.com/sleepertassly/crypto-playground">@Localizer["See project source code"] &raquo;</a></p>
+    </div>
+</div>

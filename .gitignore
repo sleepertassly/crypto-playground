@@ -1,0 +1,17 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/src/.vs
+/src/CryptoPlayground/obj
+/src/CryptoPlayground/bin
+/.vs
+/src/CryptoPlayground/CryptoPlayground.csproj.user
+/test/AffineCipher/.vs/AffineCipher/v15
+/test/AffineCipher/AffineCipher/bin/Debug/netcoreapp2.0
+/test/AffineCipher/AffineCipher/obj
+/test/VigenereCipher/.vs/VigenereCipher/v15
+/test/VigenereCipher/VigenereCipher/bin/Debug/netcoreapp2.0
+/test/VigenereCipher/VigenereCipher/obj
+/src/CryptoPlayground/Temp
+/src/CryptoPlayground/wwwroot/archive
