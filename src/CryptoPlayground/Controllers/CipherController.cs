@@ -121,7 +121,7 @@ namespace CryptoPlayground.Controllers
 			var teamLetter = letter.UnlockedBy.SingleOrDefault(tl => tl.TeamId == team.Id);
 			if (teamLetter == null)
 			{
-				if (letter.Key == key)
+				if (KeyEquals(letter.Key,key))
 				{
 					letter.UnlockedBy.Add(new TeamLetter()
 					{
@@ -141,7 +141,7 @@ namespace CryptoPlayground.Controllers
 			}
 			else if (teamLetter.RemainingAttempts > 0 && teamLetter.UnlockedOn == null)
 			{
-				if (letter.Key == key)
+				if (KeyEquals(letter.Key, key))
 				{
 					teamLetter.UnlockedOn = DateTime.Now.ToUniversalTime();
 				}
@@ -175,7 +175,7 @@ namespace CryptoPlayground.Controllers
 				var teamLetter = letters[lk.Id].UnlockedBy.SingleOrDefault(tl => tl.TeamId == team.Id);
 				if (teamLetter == null)
 				{
-					if (letters[lk.Id].Key == lk.Key)
+					if (KeyEquals(letters[lk.Id].Key, lk.Key))
 					{
 						letters[lk.Id].UnlockedBy.Add(new TeamLetter()
 						{
@@ -195,7 +195,7 @@ namespace CryptoPlayground.Controllers
 				}
 				else if (teamLetter.RemainingAttempts > 0 && teamLetter.UnlockedOn == null)
 				{
-					if (letters[lk.Id].Key == lk.Key)
+					if (KeyEquals(letters[lk.Id].Key, lk.Key))
 					{
 						teamLetter.UnlockedOn = DateTime.Now.ToUniversalTime();
 					}
@@ -208,5 +208,11 @@ namespace CryptoPlayground.Controllers
 			await _context.SaveChangesAsync();
 			return RedirectToAction(nameof(Index), new { cipher = cipher });
 		}
-	}
+
+
+        private bool KeyEquals(string key1, string key2)
+        {
+            return !String.IsNullOrEmpty(key1) && !String.IsNullOrEmpty(key2) && key1.ToLower().Trim() == key2.ToLower().Trim();
+        }
+    }
 }

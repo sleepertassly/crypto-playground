@@ -70,7 +70,6 @@ namespace CryptoPlayground.Models
             "him",
             "his",
             "how",
-            "I",
             "if",
             "in",
             "into",
