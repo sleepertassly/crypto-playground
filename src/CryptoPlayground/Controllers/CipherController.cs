@@ -92,7 +92,7 @@ namespace CryptoPlayground.Controllers
 
 			byte[] fileBytes = null;
 			var team = _teamManager.GetTeamBy(User);
-			if (letter.UnlockedBy.Select(l => l.TeamId).Contains(team.Id))
+			if (letter.UnlockedBy.Any(l => l.TeamId == team.Id && l.UnlockedOn != null))
 			{
 				fileBytes = Encoding.ASCII.GetBytes(letter.Content);
 			}

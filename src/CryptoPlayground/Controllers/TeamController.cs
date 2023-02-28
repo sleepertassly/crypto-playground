@@ -44,12 +44,19 @@ namespace CryptoPlayground.Controllers
             var teams = await _context.Teams.Include("UnlockedLetters").OrderBy(t => t.Name).ToListAsync();
             foreach (var team in teams)
             {
+                var unlockedLetters = team.UnlockedLetters
+                        .Where(l => l.UnlockedOn != null)
+                        .ToList();
                 model.Add(new TeamIndexViewModel()
                 {
                     Id = team.Id,
                     Name = team.Name,
-                    Score = team.UnlockedLetters.Count(),
-                    LastUnlockedOn = team.UnlockedLetters.Count() > 0 ? team.UnlockedLetters.Select(ul => ul.UnlockedOn).OrderBy(ul => ul).Last() : null
+                    Score = unlockedLetters.Count(),
+                    LastUnlockedOn = unlockedLetters.Count() > 0 
+                    ? unlockedLetters
+                        .Select(ul => ul.UnlockedOn)
+                        .OrderBy(ul => ul).Last() 
+                    : null
                 });
             }
             return View(model);

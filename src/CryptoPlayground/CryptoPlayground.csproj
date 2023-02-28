@@ -57,6 +57,9 @@
     <EmbeddedResource Update="Resources\Views\Shared\_Layout.hu.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\_SelectLanguagePartial.hu.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views\Shared\_LoginPartial.hu.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
